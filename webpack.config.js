@@ -1,6 +1,12 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const isProd = () => process.env.NODE_ENV === 'production'
+const isDev = () => process.env.NODE_ENV === 'development'
+
+const ramdaLoaderDebug = isDev() ? '?debug=true' : ''
+const ramdaLoader = 'ramda-loader' + ramdaLoaderDebug
+
 const config = {
     entry: [
         'webpack-dev-server/client?http://localhost:8080',
@@ -18,8 +24,8 @@ const config = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-            '__PRODUCTION__': process.env.NODE_ENV === 'production',
-            '__DEVELOPMENT__': process.env.NODE_ENV === 'development',
+            '__PRODUCTION__': isProd(),
+            '__DEVELOPMENT__': isDev(),
         }),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
@@ -31,8 +37,10 @@ const config = {
             {
                 test: /\.js$/,
                 loaders: [
+                    ramdaLoader,
                     'babel-loader',
                     'react-hot/webpack',
+                    // ramdaLoader,
                 ],
                 exclude: /node_modules/,
             },
