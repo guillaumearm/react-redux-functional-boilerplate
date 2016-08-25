@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createLogger from 'redux-logger'
 
-const rootReducer = (state, action) => state
+import rootReducer from '../reducers'
 
 export const configureStore = (initialState = {}) => {
     const store = createStore(
