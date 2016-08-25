@@ -13,7 +13,7 @@ const config = {
         filename: '[name].js',
     },
     resolve: {
-        modulesDirectories: ['web_modules', 'node_modules'],
+        modulesDirectories: [__dirname + '/src', 'web_modules', 'node_modules'],
     },
     plugins: [
         new webpack.DefinePlugin({
