@@ -11,6 +11,7 @@
   },
   "author": "Guillaume ARM",
   "dependencies": {
+    "keymirror": "^0.1.1",
     "ramda": "^0.22.1",
     "ramda-fantasy": "^0.6.1",
     "react": "^15.3.1",
