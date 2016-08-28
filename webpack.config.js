@@ -1,3 +1,4 @@
+/* global process __dirname module */
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
