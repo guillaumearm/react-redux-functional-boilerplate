@@ -29,12 +29,14 @@
     "jsx": true
   },
   "globals": {
+    "console": false,
     "window": false,
     "global": false,
     "require": false,
     "__DEVELOPMENT__": false
   },
   "rules": {
+    "no-undef": ["error"],
     "comma-dangle": ["warn", "always-multiline"], // disallow or enforce trailing commas
     "indent": ["warn", 4, {"SwitchCase": 1}], // this option sets a specific tab width for your code (off by default)
     "key-spacing": ["warn", {"beforeColon": false, "afterColon": true}], // enforces spacing between keys and values in object literal properties
