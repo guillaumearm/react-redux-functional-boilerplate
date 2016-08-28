@@ -29,10 +29,12 @@
     "jsx": true
   },
   "globals": {
+    "module": false,
     "console": false,
     "window": false,
     "global": false,
     "require": false,
+    "__PRODUCTION__": false,
     "__DEVELOPMENT__": false
   },
   "rules": {
