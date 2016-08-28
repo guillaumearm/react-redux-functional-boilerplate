@@ -1,5 +1,6 @@
+import { compose } from 'redux'
 import configureStore from './configureStore'
+import bootRedux from 'boot/redux'
 
-const store = configureStore()
-
-export default store
+const initStore = compose(bootRedux, configureStore)
+export default initStore()
