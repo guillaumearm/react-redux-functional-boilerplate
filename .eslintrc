@@ -29,6 +29,7 @@
     "jsx": true
   },
   "globals": {
+	"process": false,
     "module": false,
     "console": false,
     "window": false,
