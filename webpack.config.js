@@ -5,7 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
 
+const devtool = isDev() ? 'source-map' : ''
+
 const config = {
+    devtool,
     entry: [
         'webpack-dev-server/client?http://localhost:8080',
         'react-hot-loader/patch',
