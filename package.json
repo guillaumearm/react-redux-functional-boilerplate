@@ -7,7 +7,8 @@
     "dev-prod": "NODE_ENV=production webpack-dev-server --config webpack.config.js --port 8080 --host 0.0.0.0 --progress --colors --content-base build/",
     "build": "NODE_ENV=production webpack --config webpack.config.js --progress --colors",
     "build-dev": "NODE_ENV=development webpack --config webpack.config.js --progress --colors",
-    "clean": "./node_modules/.bin/rimraf ./build && echo --- Cleaned ---"
+    "clean": "./node_modules/.bin/rimraf ./build && echo --- Cleaned ---",
+    "open": "open 'http://localhost:8080'"
   },
   "author": "Guillaume ARM",
   "dependencies": {
