@@ -1,6 +1,7 @@
 /* global process __dirname module */
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
@@ -32,6 +33,9 @@ const config = {
             template: __dirname + '/src/index.html',
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin('styles.css', {
+            allChunks: true,
+        }),
     ],
     module: {
         loaders: [
@@ -42,6 +46,12 @@ const config = {
                     'react-hot/webpack',
                 ],
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: 'style-loader',
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
             },
         ],
     },
