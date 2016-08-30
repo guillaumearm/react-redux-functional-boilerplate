@@ -41,10 +41,7 @@ const config = {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: [
-                    'babel-loader',
-                    'react-hot/webpack',
-                ],
+                loader: 'babel-loader',
                 exclude: /node_modules/,
             },
             {
