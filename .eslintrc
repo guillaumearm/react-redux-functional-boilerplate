@@ -29,12 +29,13 @@
     "jsx": true
   },
   "globals": {
-	"process": false,
+    "document": false,
     "module": false,
     "console": false,
     "window": false,
     "global": false,
     "require": false,
+    "__NODE_ENV__": false,
     "__PRODUCTION__": false,
     "__DEVELOPMENT__": false
   },

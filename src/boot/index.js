@@ -1,4 +1,4 @@
-console.log(`Running in ${process.env.NODE_ENV} mode.`)
+console.log(`Running in ${__NODE_ENV__} mode.`)
 
 // load styles
 import 'styles'
