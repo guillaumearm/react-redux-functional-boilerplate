@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production webpack --config webpack.config.js --progress --colors",
     "build-dev": "NODE_ENV=development webpack --config webpack.config.js --progress --colors",
     "clean": "rimraf ./build && echo --- Cleaned ---",
-    "open": "open 'http://localhost:8080'"
+    "open": "opn 'http://localhost:8080'"
   },
   "author": "Guillaume ARM",
   "dependencies": {
