@@ -3,10 +3,11 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const isDev = () => process.env.NODE_ENV === 'development'
+const isDevRamda = () => process.env.NODE_ENV === 'dev-ramda'
+const isDev = () => isDevRamda() || process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
 
-const devtool = isDev() ? 'source-map' : ''
+const devtool = (isDev() && !isDevRamda()) ? 'source-map' : ''
 
 const config = {
     devtool,
@@ -42,7 +43,7 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'ramda-loader',
+                loader: `ramda-loader?debug=${isDevRamda()}`,
             },
             {
                 test: /\.js$/,
