@@ -7,4 +7,5 @@ export default (initialState = {}) => {
         initialState,
         undefined // middlewares
     )
+	return store
 }
