@@ -41,6 +41,11 @@ const config = {
         loaders: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'ramda-loader',
+            },
+            {
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
             },
