@@ -10,7 +10,27 @@
     "clean": "rimraf ./build && echo --- Cleaned ---",
     "open": "opn 'http://localhost:8080'"
   },
-  "author": "Guillaume ARM",
+  "author": {
+    "name": "Guillaume ARM",
+    "email": "guillaume.arm@redpelicans.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guillaumearm/react-redux-functional-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guillaumearm/react-redux-functional-boilerplate/issues"
+  },
+  "homepage": "https://github.com/guillaumearm/react-redux-functional-boilerplate/issues",
+  "keywords": [
+    "react",
+    "redux",
+    "react-redux",
+    "functional",
+    "boilerplate",
+    "ramda"
+  ],
   "dependencies": {
     "keymirror": "^0.1.1",
     "ramda": "^0.22.1",
