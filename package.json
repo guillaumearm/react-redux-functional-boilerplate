@@ -8,7 +8,8 @@
     "build:all": "npm run -s build ; npm run -s build:dev",
     "dev": "NODE_ENV=development webpack-dev-server --progress",
     "dev:prod": "NODE_ENV=production webpack-dev-server --progress",
-    "test": "npm run -s build:all",
+    "test": "npm run -s clean ; npm run -s build:all",
+    "preversion": "npm run -s test",
     "clean": "rimraf ./dist",
     "open": "opn 'http://localhost:8080'"
   },
