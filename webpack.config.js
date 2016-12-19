@@ -5,19 +5,24 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
+const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
 const config = {
+    devServer: {
+        host: '0.0.0.0',
+        port: 8080,
+    },
     devtool,
     entry: [
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-dev-server/client?http://0.0.0.0:8080',
         'react-hot-loader/patch',
         'webpack/hot/only-dev-server',
         __dirname + '/src/index.js',
     ],
     output: {
-        path: __dirname + '/build/',
+        path: __dirname + distFolder,
         filename: '[name].js',
     },
     resolve: {
