@@ -3,11 +3,12 @@
   "version": "0.6.0",
   "description": "a Functional React/Redux webpack boilerplate",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8080 --host 0.0.0.0 --progress --colors --content-base dist/",
-    "dev-prod": "NODE_ENV=production webpack-dev-server --config webpack.config.js --port 8080 --host 0.0.0.0 --progress --colors --content-base dist/",
-    "build": "NODE_ENV=production webpack --config webpack.config.js --progress --colors",
-    "build-dev": "NODE_ENV=development webpack --config webpack.config.js --progress --colors",
-    "clean": "rimraf ./dist && echo --- Cleaned ---",
+    "build": "NODE_ENV=production webpack --progress",
+    "build:dev": "NODE_ENV=development webpack --progress",
+    "build:all": "npm run -s build ; npm run -s build:dev",
+    "dev": "NODE_ENV=development webpack-dev-server --progress",
+    "dev:prod": "NODE_ENV=production webpack-dev-server --progress",
+    "clean": "rimraf ./dist",
     "open": "opn 'http://localhost:8080'"
   },
   "author": {
