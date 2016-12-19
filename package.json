@@ -1,6 +1,6 @@
 {
   "name": "react-redux-functional-boilerplate",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "a Functional React/Redux webpack boilerplate",
   "scripts": {
     "build": "NODE_ENV=production webpack --progress",
