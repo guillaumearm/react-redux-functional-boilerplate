@@ -3,22 +3,9 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const { readFileSync } = require('fs');
-
-const {
-    compose, invoker, prop, propOr, path, pathOr,
-} = require('ramda');
-
 /* ---- Config -------------------------------------------------------------- */
-const toString = invoker(0, 'toString');
-const getConfig = compose(propOr({}, 'config'), JSON.parse, toString, readFileSync);
-const config = getConfig('./package.json');
-
-const getPort = propOr(8080, 'port');
-const getHost = propOr('0.0.0.0', 'host')
+const { host, port } = require('./scripts/config');
 /* -------------------------------------------------------------------------- */
-const host = getHost(config);
-const port = getPort(config);
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
