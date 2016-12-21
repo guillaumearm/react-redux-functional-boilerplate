@@ -10,13 +10,11 @@ import Root from './Root'
 const reactContainer = document.getElementById('reactContainer')
 
 ReactDOM.render(
-    <AppContainer>
-        <Root/>
-    </AppContainer>,
+    <Root/>,
     reactContainer
 )
 
-if (module.hot) {
+if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept('./Root', () => {
         const NextRoot = require('./Root').default
         ReactDOM.render(

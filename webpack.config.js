@@ -3,6 +3,9 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const { reject, isNil } = require('ramda');
+const rejectIsNil = reject(isNil);
+
 /* ---- Config -------------------------------------------------------------- */
 const { host, port } = require('./scripts/config');
 /* -------------------------------------------------------------------------- */
@@ -13,18 +16,20 @@ const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
+const entry = rejectIsNil([
+    __dirname + '/src/index.js',
+    isDev() ? `webpack-dev-server/client?http://${host}:${port}` : undefined,
+    isDev() ? 'react-hot-loader/patch' : undefined,
+    isDev() ? 'webpack/hot/only-dev-server' : undefined,
+]);
+
 const webpackConfig = {
     devServer: {
         host,
         port,
     },
     devtool,
-    entry: [
-        `webpack-dev-server/client?http://${host}:${port}`,
-        'react-hot-loader/patch',
-        'webpack/hot/only-dev-server',
-        __dirname + '/src/index.js',
-    ],
+    entry,
     output: {
         path: __dirname + distFolder,
         filename: '[name].js',
