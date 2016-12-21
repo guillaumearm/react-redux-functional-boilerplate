@@ -2,6 +2,9 @@
   "name": "react-redux-functional-boilerplate",
   "version": "0.7.0",
   "description": "a Functional React/Redux webpack boilerplate",
+  "config": {
+    "port": 3042
+  },
   "scripts": {
     "build": "NODE_ENV=production webpack --progress",
     "build:dev": "NODE_ENV=development webpack --progress",

@@ -3,20 +3,37 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const { readFileSync } = require('fs');
+
+const {
+    compose, invoker, prop, propOr, path, pathOr,
+} = require('ramda');
+
+/* ---- Config -------------------------------------------------------------- */
+const toString = invoker(0, 'toString');
+const getConfig = compose(propOr({}, 'config'), JSON.parse, toString, readFileSync);
+const config = getConfig('./package.json');
+
+const getPort = propOr(8080, 'port');
+const getHost = propOr('0.0.0.0', 'host')
+/* -------------------------------------------------------------------------- */
+const host = getHost(config);
+const port = getPort(config);
+
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
 const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
-const config = {
+const webpackConfig = {
     devServer: {
-        host: '0.0.0.0',
-        port: 8080,
+        host,
+        port,
     },
     devtool,
     entry: [
-        'webpack-dev-server/client?http://0.0.0.0:8080',
+        `webpack-dev-server/client?http://${host}:${port}`,
         'react-hot-loader/patch',
         'webpack/hot/only-dev-server',
         __dirname + '/src/index.js',
@@ -59,4 +76,4 @@ const config = {
     },
 }
 
-module.exports = config
+module.exports = webpackConfig
