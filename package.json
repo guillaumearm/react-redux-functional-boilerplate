@@ -21,11 +21,11 @@
   },
   "jest": {
     "globals": {
-        "process.env.NODE_ENV": "test",
-        "__NODE_ENV__": "test",
-        "__DEVELOPMENT__": false,
-        "__PRODUCTION__": false,
-        "__TEST__": true
+      "process.env.NODE_ENV": "test",
+      "__NODE_ENV__": "test",
+      "__DEVELOPMENT__": false,
+      "__PRODUCTION__": false,
+      "__TEST__": true
     },
     "testEnvironment": "node",
     "moduleDirectories": [
