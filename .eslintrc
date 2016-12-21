@@ -35,9 +35,14 @@
     "window": false,
     "global": false,
     "require": false,
+    "process": false,
+    "it": false,
+    "expect": false,
+    "describe": false,
     "__NODE_ENV__": false,
+    "__DEVELOPMENT__": false,
     "__PRODUCTION__": false,
-    "__DEVELOPMENT__": false
+    "__TEST__": false,
   },
   "rules": {
     "no-undef": ["error"],

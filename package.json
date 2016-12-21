@@ -11,10 +11,27 @@
     "build:all": "npm run -s build ; npm run -s build:dev",
     "dev": "NODE_ENV=development webpack-dev-server --progress",
     "dev:prod": "NODE_ENV=production webpack-dev-server --progress",
-    "test": "npm run -s clean ; npm run -s build:all",
+    "test": "jest",
+    "test:all": "npm run -s clean ; npm run -s build:all ; npm run -s test",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
     "clean": "rimraf ./dist",
     "open": "node scripts/open.js"
+  },
+  "jest": {
+    "globals": {
+        "process.env.NODE_ENV": "test",
+        "__NODE_ENV__": "test",
+        "__DEVELOPMENT__": false,
+        "__PRODUCTION__": false,
+        "__TEST__": true
+    },
+    "testEnvironment": "node",
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ]
   },
   "author": {
     "name": "Guillaume ARM",
@@ -62,6 +79,7 @@
     "eslint-plugin-react": "^3.12.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
+    "jest": "^18.0.0",
     "opn": "^4.0.2",
     "react-hot-loader": "^3.0.0-alpha.3",
     "redux-logger": "^2.7.4",
