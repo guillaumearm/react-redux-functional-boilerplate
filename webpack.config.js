@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const { reject, isNil } = require('ramda');
+const { always, reject, isNil } = require('ramda');
 const rejectIsNil = reject(isNil);
 
 /* ---- Config -------------------------------------------------------------- */
@@ -12,6 +12,7 @@ const { host, port } = require('./scripts/config');
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
+const isTest = always(false);
 const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
@@ -22,6 +23,8 @@ const entry = rejectIsNil([
     isDev() ? 'react-hot-loader/patch' : undefined,
     isDev() ? 'webpack/hot/only-dev-server' : undefined,
 ]);
+
+const NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development')
 
 const webpackConfig = {
     devServer: {
@@ -39,9 +42,11 @@ const webpackConfig = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            '__NODE_ENV__': JSON.stringify(process.env.NODE_ENV || 'development'),
+            'process.env.NODE_ENV': NODE_ENV,
+            '__NODE_ENV__': NODE_ENV,
             '__DEVELOPMENT__': isDev(),
             '__PRODUCTION__': isProd(),
+            '__TEST__': isTest(),
         }),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
