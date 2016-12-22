@@ -28,7 +28,6 @@ function createBrowserWindow () {
 
     // Emitted when the window is closed.
     window.on('closed', () => {
-        process.exit(0)
         window = null
     })
 }
