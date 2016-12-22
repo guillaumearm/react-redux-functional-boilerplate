@@ -3,14 +3,17 @@
   "version": "0.7.0",
   "description": "a Functional React/Redux webpack boilerplate",
   "config": {
+    "host": "127.0.0.1",
     "port": 3042
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --progress",
     "build:dev": "NODE_ENV=development webpack --progress",
     "build:all": "npm run -s build ; npm run -s build:dev",
-    "dev": "NODE_ENV=development webpack-dev-server --progress",
-    "dev:prod": "NODE_ENV=production webpack-dev-server --progress",
+    "dev": "NODE_ENV=development node -r babel-register server.js --progress",
+    "dev:prod": "NODE_ENV=production node -r babel-register server.js --progress",
+    "dev:electron": "NODE_ENV=development node -r babel-register server.js --electron",
+    "dev:prod:electron": "NODE_ENV=production node -r babel-register server.js --electron",
     "test": "jest",
     "test:all": "npm run -s clean ; npm run -s build:all ; npm run -s test",
     "test:coverage": "jest --coverage",
@@ -21,11 +24,11 @@
   },
   "jest": {
     "globals": {
-        "process.env.NODE_ENV": "test",
-        "__NODE_ENV__": "test",
-        "__DEVELOPMENT__": false,
-        "__PRODUCTION__": false,
-        "__TEST__": true
+      "process.env.NODE_ENV": "test",
+      "__NODE_ENV__": "test",
+      "__DEVELOPMENT__": false,
+      "__PRODUCTION__": false,
+      "__TEST__": true
     },
     "testEnvironment": "node",
     "moduleDirectories": [
@@ -75,6 +78,8 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.1",
+    "electron": "^1.4.13",
+    "electron-reload": "^1.1.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^3.12.2",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -87,6 +92,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.13.2"
+    "webpack-hot-middleware": "^2.13.2",
+    "webpack-target-electron-renderer": "^0.4.0",
+    "yargs": "^6.5.0"
   }
 }

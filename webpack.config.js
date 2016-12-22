@@ -2,6 +2,7 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+import webpackTargetElectronRenderer from 'webpack-target-electron-renderer';
 
 const { always, reject, isNil } = require('ramda');
 const rejectIsNil = reject(isNil);
@@ -12,16 +13,17 @@ const { host, port } = require('./scripts/config');
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
-const isTest = always(false);
+const isTest = () => process.env.NODE_ENV === 'test';
+const isElectron = always(require('yargs').argv.electron);
+
 const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
 const entry = rejectIsNil([
     __dirname + '/src/index.js',
-    isDev() ? `webpack-dev-server/client?http://${host}:${port}` : undefined,
     isDev() ? 'react-hot-loader/patch' : undefined,
-    isDev() ? 'webpack/hot/only-dev-server' : undefined,
+    isDev() ? `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr`: undefined,
 ]);
 
 const NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development')
@@ -47,6 +49,7 @@ const webpackConfig = {
             '__DEVELOPMENT__': isDev(),
             '__PRODUCTION__': isProd(),
             '__TEST__': isTest(),
+            '__ELECTRON__': isElectron(),
         }),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
@@ -71,6 +74,11 @@ const webpackConfig = {
             },
         ],
     },
+}
+
+
+if (isElectron()) {
+    webpackConfig.target = webpackTargetElectronRenderer(webpackConfig);
 }
 
 module.exports = webpackConfig
