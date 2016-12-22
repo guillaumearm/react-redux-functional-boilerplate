@@ -11,9 +11,7 @@ const rejectIsNil = reject(isNil);
 const { host, port } = require('./scripts/config');
 /* -------------------------------------------------------------------------- */
 
-const isDev = () => process.env.NODE_ENV === 'development'
-const isProd = () => process.env.NODE_ENV === 'production'
-const isTest = () => process.env.NODE_ENV === 'test';
+const { isDev, isProd, isTest } = require('./scripts/env');
 const isElectron = always(require('yargs').argv.electron);
 
 const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
