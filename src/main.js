@@ -2,12 +2,13 @@
 import { app, BrowserWindow } from 'electron'
 /* ---------- Requires ------------------------------------------------------ */
 import { host, port } from '../scripts/config'
+import { isDev } from '../scripts/env'
 import path from 'path'
 /* ---------- Refs for garbage collection ----------------------------------- */
 let window
 /* -------------------------------------------------------------------------- */
 
-if (process.env.NODE_ENV === 'development')
+if (isDev())
     require('electron-reload')(__dirname)
 
 function createBrowserWindow () {
@@ -22,7 +23,7 @@ function createBrowserWindow () {
     window.loadURL(`http://${host}:${port}`)
 
     // Open the DevTools.
-    if (process.env.NODE_ENV === 'development')
+    if (isDev())
         window.webContents.openDevTools()
 
     // Emitted when the window is closed.

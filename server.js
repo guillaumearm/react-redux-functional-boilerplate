@@ -5,9 +5,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { spawn } from 'child_process';
 
-const isDev = () => process.env.NODE_ENV === 'development'
-const isProd = () => process.env.NODE_ENV === 'production'
-const isElectron = always(require('yargs').argv.electron);
+import { isDev, isProd, isElectron } from './scripts/env';
 
 import { host, port } from './scripts/config';
 import config from './webpack.config';
