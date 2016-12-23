@@ -8,9 +8,6 @@ import path from 'path'
 let window
 /* -------------------------------------------------------------------------- */
 
-if (isDev())
-    require('electron-reload')(__dirname)
-
 function createBrowserWindow () {
     // Init Window
     window = new BrowserWindow({
