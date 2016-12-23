@@ -2,7 +2,7 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-import webpackTargetElectronRenderer from 'webpack-target-electron-renderer';
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 
 const { always, reject, isNil } = require('ramda');
 const rejectIsNil = reject(isNil);
