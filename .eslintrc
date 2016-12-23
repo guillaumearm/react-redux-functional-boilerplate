@@ -29,6 +29,8 @@
     "jsx": true
   },
   "globals": {
+    "setTimeout": false,
+    "setImmediate": false,
     "__dirname": false,
     "document": false,
     "module": false,
