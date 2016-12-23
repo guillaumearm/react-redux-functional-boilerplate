@@ -14,7 +14,7 @@ const { host, port, packageJson } = require('./scripts/config');
 const { isDev, isProd, isTest } = require('./scripts/env');
 const isElectron = always(require('yargs').argv.electron);
 
-const distFolder = isDev() ? '/dist/dev/' : '/dist/prod/';
+const buildFolder = isDev() ? '/build/dev/' : '/build/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
@@ -34,8 +34,8 @@ const webpackConfig = {
     devtool,
     entry,
     output: {
-        path: __dirname + distFolder,
-        filename: '[name].js',
+        path: __dirname + buildFolder,
+        filename: 'index.js',
     },
     resolve: {
         modulesDirectories: [__dirname + '/src', 'web_modules', 'node_modules'],

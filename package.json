@@ -2,7 +2,8 @@
   "name": "react-redux-functional-boilerplate",
   "version": "0.7.0",
   "description": "a Functional React/Redux webpack boilerplate",
-  "config": {
+  "main": "./build/prod/main.js",
+  "devConfig": {
     "host": "127.0.0.1",
     "port": 3042
   },
@@ -10,6 +11,7 @@
     "build": "NODE_ENV=production webpack --progress",
     "build:dev": "NODE_ENV=development webpack --progress",
     "build:all": "npm run -s build ; npm run -s build:dev",
+    "build:electron": "electron-packager --overwrite --platform mas .",
     "dev": "NODE_ENV=development node -r babel-register server.js --progress",
     "dev:prod": "NODE_ENV=production node -r babel-register server.js --progress",
     "dev:electron": "NODE_ENV=development node -r babel-register server.js --electron",
@@ -19,7 +21,7 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
-    "clean": "rimraf ./dist",
+    "clean": "rimraf ./build ./dist",
     "open": "node scripts/open.js"
   },
   "jest": {
@@ -80,6 +82,7 @@
     "css-loader": "^0.26.1",
     "electron": "^1.4.13",
     "electron-devtools-installer": "^2.0.1",
+    "electron-packager": "^8.4.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^3.12.2",
     "extract-text-webpack-plugin": "^1.0.1",
