@@ -8,7 +8,7 @@
     "port": 3042
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack --progress",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --progress",
     "build:dev": "NODE_ENV=development webpack --progress",
     "build:all": "npm run -s build ; npm run -s build:dev",
     "build:electron": "electron-packager --overwrite --platform mas .",

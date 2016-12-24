@@ -1,4 +1,5 @@
 /* global process __dirname module */
+const path = require('path');
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -8,18 +9,17 @@ const { always, reject, isNil } = require('ramda');
 const rejectIsNil = reject(isNil);
 
 /* ---- Config -------------------------------------------------------------- */
-const { host, port, packageJson } = require('./scripts/config');
+const { host, port, packageJson } = require('../scripts/config');
+const { isDev, isProd, isTest, isElectron } = require('../scripts/env');
+const APP_PATH = path.join(__dirname,  '..');
+const SRC_PATH = path.join(APP_PATH, 'src');
+const BUILD_PATH = path.join(APP_PATH, isDev() ? 'build/dev' : 'build/prod');
 /* -------------------------------------------------------------------------- */
-
-const { isDev, isProd, isTest } = require('./scripts/env');
-const isElectron = always(require('yargs').argv.electron);
-
-const buildFolder = isDev() ? '/build/dev/' : '/build/prod/';
 
 const devtool = isDev() ? 'source-map' : ''
 
 const entry = rejectIsNil([
-    __dirname + '/src/index.js',
+    path.join(SRC_PATH, 'index.js'),
     isDev() ? 'react-hot-loader/patch' : undefined,
     isDev() ? `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr`: undefined,
 ]);
@@ -34,11 +34,11 @@ const webpackConfig = {
     devtool,
     entry,
     output: {
-        path: __dirname + buildFolder,
+        path: BUILD_PATH,
         filename: 'index.js',
     },
     resolve: {
-        modulesDirectories: [__dirname + '/src', 'web_modules', 'node_modules'],
+        modulesDirectories: [SRC_PATH, 'web_modules', 'node_modules'],
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -52,7 +52,7 @@ const webpackConfig = {
             '__VERSION__': JSON.stringify(packageJson.version),
         }),
         new HtmlWebpackPlugin({
-            template: __dirname + '/src/index.html',
+            template: path.join(SRC_PATH, 'index.html'),
         }),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('styles.css', {

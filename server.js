@@ -8,13 +8,13 @@ import { spawn } from 'child_process';
 import { isDev, isProd, isElectron } from './scripts/env';
 
 import { host, port } from './scripts/config';
-import config from './webpack.config';
+import webpackConfig from './webpack/webpack.config';
 
 const app = express();
-const compiler = webpack(config);
+const compiler = webpack(webpackConfig);
 
 const wdm = webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath,
+    publicPath: webpackConfig.output.publicPath,
     stats: {
         colors: true,
     },
