@@ -46,6 +46,9 @@
     "__DEVELOPMENT__": false,
     "__PRODUCTION__": false,
     "__TEST__": false,
+    "__ELECTRON__": false,
+    "__NAME__": false,
+    "__VERSION__": false,
   },
   "rules": {
     "no-undef": ["error"],
