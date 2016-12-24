@@ -8,7 +8,7 @@ const { always, reject, isNil } = require('ramda');
 const rejectIsNil = reject(isNil);
 
 /* ---- Config -------------------------------------------------------------- */
-const { host, port } = require('./scripts/config');
+const { host, port, packageJson } = require('./scripts/config');
 /* -------------------------------------------------------------------------- */
 
 const { isDev, isProd, isTest } = require('./scripts/env');
@@ -48,6 +48,8 @@ const webpackConfig = {
             '__PRODUCTION__': isProd(),
             '__TEST__': isTest(),
             '__ELECTRON__': isElectron(),
+            '__NAME__': JSON.stringify(packageJson.name),
+            '__VERSION__': JSON.stringify(packageJson.version),
         }),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',

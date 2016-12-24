@@ -42,6 +42,8 @@
     "it": false,
     "expect": false,
     "describe": false,
+    "__NAME__": false,
+    "__VERSION__": false,
     "__NODE_ENV__": false,
     "__DEVELOPMENT__": false,
     "__PRODUCTION__": false,
