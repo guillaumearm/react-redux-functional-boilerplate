@@ -1,5 +1,3 @@
-console.log(`Running in ${__NODE_ENV__} mode.`)
-
 // load styles
 import 'styles'
 
@@ -9,3 +7,5 @@ if (__PRODUCTION__) {
 } else {
     module.exports = require('./boot.dev')
 }
+
+console.log(`Running in ${__NODE_ENV__} mode.`)
