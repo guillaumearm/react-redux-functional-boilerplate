@@ -9,8 +9,8 @@ const baseConf = require('./webpack.base.config');
 const { SRC_PATH } = require('./env');
 /* -------------------------------------------------------------------------- */
 
-const webpackConfig = {
-    entry: path.join(SRC_PATH, 'index.js'),
+const webpackConf = {
+    entry: [path.join(SRC_PATH, 'index.js')],
     output: {
         filename: 'index.js',
     },
@@ -38,4 +38,8 @@ const webpackConfig = {
     },
 };
 
-module.exports = validate(merge(baseConf, webpackConfig));
+const warn = x => (console.log(x), x);
+
+module.exports = warn(validate(merge.strategy({
+    entry: 'prepend',
+})(baseConf, webpackConf)));
