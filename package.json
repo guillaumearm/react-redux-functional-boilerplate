@@ -1,5 +1,6 @@
 {
   "name": "react-redux-functional-boilerplate",
+  "productName": "React/Redux functional boilerplate",
   "version": "0.7.0",
   "description": "a Functional React/Redux webpack boilerplate",
   "main": "./build/prod/main.js",
@@ -20,7 +21,6 @@
     "dev:prod:electron": "NODE_ENV=production node -r babel-register server.js --electron",
     "package:electron:osx": "npm run build:electron && electron-packager --overwrite --platform mas .",
     "test": "jest",
-    "test:all": "npm run -s clean ; npm run -s build:all ; npm run -s test",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
