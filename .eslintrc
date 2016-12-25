@@ -47,10 +47,13 @@
     "__PRODUCTION__": false,
     "__TEST__": false,
     "__ELECTRON__": false,
+    "__PACKAGEJSON__": false,
     "__NAME__": false,
     "__VERSION__": false,
   },
   "rules": {
+    "no-unused-vars": ["warn"],
+    "no-redeclare": ["error"],
     "no-undef": ["error"],
     "comma-dangle": ["warn", "always-multiline"], // disallow or enforce trailing commas
     "indent": ["warn", 4, {"SwitchCase": 1}], // this option sets a specific tab width for your code (off by default)

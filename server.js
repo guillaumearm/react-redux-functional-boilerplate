@@ -1,14 +1,16 @@
-import { always } from 'ramda';
 import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { spawn } from 'child_process';
 
-import { isDev, isProd, isElectron } from './scripts/env';
+import { host, port, isElectron, isDev } from './webpack/env';
 
-import { host, port } from './scripts/config';
-import webpackConfig from './webpack/webpack.config';
+let webpackConfig;
+if (isElectron())
+    webpackConfig = require('./webpack/webpack.electron-renderer.config.js');
+else
+    webpackConfig = require('./webpack/webpack.config.js');
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -29,7 +31,8 @@ const server = app.listen(port, host, serverError => {
     }
 
     if (isElectron()) {
-        spawn('electron', ['-r', 'babel-register', 'src/main.js'], {
+        const mainPath = `build/${isDev() ? 'dev' : 'prod'}/main.js`;
+        spawn('electron', ['-r', 'babel-register', mainPath], {
             shell: true, env: process.env, stdio: 'inherit',
         })
         .on('close', code => process.exit(code))

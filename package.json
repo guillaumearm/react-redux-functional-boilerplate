@@ -9,19 +9,22 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --progress",
-    "build:dev": "NODE_ENV=development webpack --progress",
-    "build:all": "npm run -s build ; npm run -s build:dev",
-    "build:electron": "electron-packager --overwrite --platform mas .",
+    "build:dev": "NODE_ENV=development webpack --config webpack/webpack.config.js --progress",
+    "build:main": "NODE_ENV=production webpack --config webpack/webpack.electron-main.config.js",
+    "build:dev:main": "NODE_ENV=development webpack --config webpack/webpack.electron-main.config.js",
+    "build:electron": "npm run -s build:main && npm run -s build",
+    "build:dev:electron": "npm run -s build:dev:main && npm run -s build:dev",
     "dev": "NODE_ENV=development node -r babel-register server.js --progress",
     "dev:prod": "NODE_ENV=production node -r babel-register server.js --progress",
     "dev:electron": "NODE_ENV=development node -r babel-register server.js --electron",
     "dev:prod:electron": "NODE_ENV=production node -r babel-register server.js --electron",
+    "package:electron:osx": "npm run build:electron && electron-packager --overwrite --platform mas .",
     "test": "jest",
     "test:all": "npm run -s clean ; npm run -s build:all ; npm run -s test",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
-    "clean": "rimraf ./build ./dist",
+    "clean": "rimraf ./build ./dist ./react-redux-functional-boilerplate-mas-x64",
     "open": "node scripts/open.js"
   },
   "jest": {
@@ -88,6 +91,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "jest": "^18.0.0",
+    "json-loader": "^0.5.4",
     "opn": "^4.0.2",
     "react-hot-loader": "^3.0.0-alpha.3",
     "redux-logger": "^2.7.4",
@@ -96,7 +100,9 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.13.2",
+    "webpack-merge": "^2.0.0",
     "webpack-target-electron-renderer": "^0.4.0",
+    "webpack-validator": "^2.3.0",
     "yargs": "^6.5.0"
   }
 }
