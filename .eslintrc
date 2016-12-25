@@ -4,29 +4,38 @@
   },
   "parser": "babel-eslint",
   "plugins": ["react"],
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "binaryLiterals": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralDuplicateProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "octalLiterals": true,
-    "regexUFlag": true,
-    "regexYFlag": true,
-    "spread": true,
-    "superInFunctions": true,
-    "templateStrings": true,
-    "unicodeCodePointEscapes": true,
-    "globalReturn": true,
-    "jsx": true
+  "settings": {
+    "react": {
+      "createClass": "createClass", // Regex for Component Factory to use, default to "createClass"
+      "pragma": "React",  // Pragma to use, default to "React"
+      "version": "15.4" // React version, default to the latest React stable release
+    }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "binaryLiterals": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": true,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": true,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "octalLiterals": true,
+      "regexUFlag": true,
+      "regexYFlag": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "unicodeCodePointEscapes": true,
+      "globalReturn": true,
+      "jsx": true
+    }
   },
   "globals": {
     "setTimeout": false,
@@ -61,6 +70,8 @@
     "quotes": ["warn", "single", "avoid-escape"], // specify whether double or single quotes should be used
     "keyword-spacing": ["warn", {"before": true, "after": true}], // require a space after certain keywords (off by default)
     "computed-property-spacing": ["warn", "never"], // disallow spaces inside computed properties
-    "react/jsx-indent-props": [0]
+    "react/jsx-indent-props": [0],
+    "react/react-in-jsx-scope": ["error"],
+    "react/jsx-uses-react": ["error"]
   }
 }
