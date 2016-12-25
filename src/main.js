@@ -1,9 +1,10 @@
 /* ---------- Electron init ------------------------------------------------- */
+import { always } from 'ramda';
 import { app, BrowserWindow } from 'electron'
 /* ---------- Requires ------------------------------------------------------ */
-import { host, port } from '../scripts/config'
-import { isDev } from '../scripts/env'
-import path from 'path'
+const { devConfig } = __PACKAGEJSON__;
+const isDev = always(__DEVELOPMENT__);
+const { host = '0.0.0.0', port = 8080 } = devConfig;
 /* ----------- Devtools ------------------------------------------------------ */
 let installDevTools = () => Promise.resolve();
 if (isDev()) {
@@ -19,19 +20,11 @@ if (isDev()) {
 let window
 /* -------------------------------------------------------------------------- */
 
-let firstTime = true;
-const openDevTools = () => {
-    setTimeout(() => {
-        window.webContents.openDevTools();
-        firstTime = false;
-    }, firstTime ? 3000 : 0)
-};
-
 function setDevelopmentMode() {
     installDevTools()
         .then((names) => {
             console.log(`Added Extension: ${names}`);
-            openDevTools();
+            window.webContents.openDevTools();
         })
         .catch((err) => console.log('An error occurred: ', err));
 }
