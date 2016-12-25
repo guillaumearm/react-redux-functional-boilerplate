@@ -3,7 +3,7 @@ const { readFileSync } = require('fs');
 /* ---- Config -------------------------------------------------------------- */
 const toString = invoker(0, 'toString');
 const getPackageJson = compose(JSON.parse, toString, readFileSync);
-const getConfig = propOr({}, 'config');
+const getConfig = propOr({}, 'devConfig');
 
 const packageJson = getPackageJson('./package.json');
 const config = getConfig(packageJson);

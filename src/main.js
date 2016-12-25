@@ -5,17 +5,21 @@ import { host, port } from '../scripts/config'
 import { isDev } from '../scripts/env'
 import path from 'path'
 /* ----------- Devtools ------------------------------------------------------ */
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+let installDevTools = () => Promise.resolve();
+if (isDev()) {
+    const electronDevtoolsInstaller = require('electron-devtools-installer');
+    const installExtension = electronDevtoolsInstaller.default;
+    const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = electronDevtoolsInstaller;
+    installDevTools = () => Promise.all([
+        installExtension(REACT_DEVELOPER_TOOLS),
+        installExtension(REDUX_DEVTOOLS),
+    ])
+}
 /* ---------- Refs for garbage collection ----------------------------------- */
 let window
-let firstTime = true;
 /* -------------------------------------------------------------------------- */
 
-const installDevTools = () => Promise.all([
-    installExtension(REACT_DEVELOPER_TOOLS),
-    installExtension(REDUX_DEVTOOLS),
-])
-
+let firstTime = true;
 const openDevTools = () => {
     setTimeout(() => {
         window.webContents.openDevTools();
