@@ -2,7 +2,7 @@
   "name": "react-redux-functional-boilerplate",
   "productName": "React/Redux functional boilerplate",
   "version": "0.7.0",
-  "description": "a Functional React/Redux webpack boilerplate",
+  "description": "an electron ready functional React/Redux webpack boilerplate",
   "main": "./build/prod/main.js",
   "devConfig": {
     "host": "127.0.0.1",
@@ -19,12 +19,12 @@
     "dev:prod": "NODE_ENV=production node -r babel-register server.js --progress",
     "dev:electron": "NODE_ENV=development node -r babel-register server.js --electron",
     "dev:prod:electron": "NODE_ENV=production node -r babel-register server.js --electron",
-    "package:electron:osx": "npm run build:electron && electron-packager --overwrite --platform mas .",
+    "package:electron:osx": "npm run build:electron && electron-packager --out dist --overwrite --platform mas .",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
-    "clean": "rimraf ./build ./dist ./react-redux-functional-boilerplate-mas-x64",
+    "clean": "rimraf ./build ./dist",
     "open": "node scripts/open.js"
   },
   "jest": {
@@ -36,6 +36,11 @@
       "__TEST__": true
     },
     "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/",
+      "<rootDir>/dist/"
+    ],
     "moduleDirectories": [
       "src",
       "node_modules"
@@ -60,12 +65,12 @@
     "react-redux",
     "functional",
     "boilerplate",
+    "electron",
     "ramda"
   ],
   "dependencies": {
     "keymirror": "^0.1.1",
     "ramda": "^0.22.1",
-    "ramda-fantasy": "^0.7.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
