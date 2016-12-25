@@ -10,13 +10,13 @@ const { SRC_PATH } = require('./env');
 /* -------------------------------------------------------------------------- */
 
 const webpackConf = {
-    entry: [path.join(SRC_PATH, 'index.js')],
+    entry: [path.join(SRC_PATH, 'render.js')],
     output: {
-        filename: 'index.js',
+        filename: 'render.js',
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(SRC_PATH, 'index.html'),
+            template: path.join(SRC_PATH, 'view.html'),
         }),
         new ExtractTextPlugin('styles.css', {
             allChunks: true,
@@ -38,8 +38,6 @@ const webpackConf = {
     },
 };
 
-const warn = x => (console.log(x), x);
-
-module.exports = warn(validate(merge.strategy({
+module.exports = validate(merge.strategy({
     entry: 'prepend',
-})(baseConf, webpackConf)));
+})(baseConf, webpackConf));
