@@ -32,7 +32,7 @@ const server = app.listen(port, host, serverError => {
 
     if (isElectron()) {
         const mainPath = `build/${isDev() ? 'dev' : 'prod'}/main.js`;
-        spawn('electron', ['-r', 'babel-register', mainPath], {
+        spawn('electron', [mainPath], {
             shell: true, env: process.env, stdio: 'inherit',
         })
         .on('close', code => process.exit(code))
