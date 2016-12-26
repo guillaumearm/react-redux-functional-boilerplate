@@ -11,28 +11,21 @@ import webpackElectronMainConf from '../webpack.electron-main.config.js'
 const compiler = webpack(webpackConf);
 const mainCompiler = webpack(webpackElectronMainConf);
 
-const wdm = webpackDevMiddleware(compiler, {
-    publicPath: webpackConf.output.publicPath,
-    stats: {
-        colors: true,
-    },
-});
-
-const app = express();
-app.use(wdm);
-app.use(webpackHotMiddleware(compiler));
-
 let electronChildProcess = null;
 const startElectron = () => {
     if (isElectron()) {
         const mainPath = `build/${isDev() ? 'dev' : 'prod'}/main.js`;
+        const exit = (code) => {
+            console.info('App exited.');
+            return stopDevServer(code);
+        };
         electronChildProcess = spawn('electron', [mainPath], {
             env: process.env,
             detached: true,
             shell: true,
             stdio: 'inherit',
         })
-        .on('close', (code, signal) => signal !== 'SIGHUP' && process.exit(code))
+        .on('close', (code, signal) => signal !== 'SIGHUP' && exit(code))
         .on('error', spawnError => console.error(spawnError));
     }
 };
@@ -49,34 +42,57 @@ const restartElectron = (signal) => {
     setImmediate(startElectron);
 }
 
-if (isElectron()) {
-    mainCompiler.watch({}, (err, stats) => {
+const watchMain = compiler => {
+    compiler.watch({}, (err, stats) => {
         if (err) {
             console.error(err);
             console.error(stats.toJson().errors);
             process.exit(1);
         }
         restartElectron('SIGHUP');
-        console.info(`${webpackConf.output.filename} compiled`);
+        console.info(`${webpackElectronMainConf.output.filename} compiled`);
     });
 }
 
-const server = app.listen(port, host, serverError => {
-    if (serverError) {
-        return console.error(serverError);
-    }
+if (isElectron()) {
+    watchMain(mainCompiler);
+}
 
-    console.log(`Listening at http://${host}:${port}`);
-});
+let server;
+let wdm;
+const startDevServer = (compiler) => {
+    const app = express();
+    wdm = webpackDevMiddleware(compiler, {
+        publicPath: webpackConf.output.publicPath,
+        stats: {
+            colors: true,
+        },
+    });
 
-const stopDevServer = () => {
-    console.log('Stopping dev server');
-    wdm.close(() => {
+    app.use(wdm);
+    app.use(webpackHotMiddleware(compiler));
+    server = app.listen(port, host, serverError => {
+        if (serverError) {
+            return console.error(serverError);
+        }
+
+        console.log(`listening at http://${host}:${port}`);
+    });
+}
+const stopDevServer = (code = 0) => {
+    if (wdm && server) {
+        console.info('Closing dev server...');
         server.close(() => {
-            process.exit(0);
+            console.info('Dev server closed.');
+            process.exit(code);
         });
-    });
+        setTimeout(() => { // prevents to server.close freeze
+            process.exit(code)
+        }, 1000)
+    } else process.exit(code);
 }
+
+startDevServer(compiler);
 
 process.on('SIGTERM', stopDevServer);
 
