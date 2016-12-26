@@ -3,7 +3,6 @@ import { always, pathOr } from 'ramda';
 import { app, BrowserWindow } from 'electron'
 /* ---------- Requires ------------------------------------------------------ */
 const isDev = always(__DEVELOPMENT__);
-// const { config = {} } = __PACKAGEJSON__;
 const getDevServerConfig = pathOr({}, ['config', 'devServer']);
 const { host = '0.0.0.0', port = 8080 } = getDevServerConfig(__PACKAGEJSON__);
 /* ----------- Devtools ------------------------------------------------------ */
@@ -20,6 +19,8 @@ if (isDev()) {
 /* ---------- Refs for garbage collection ----------------------------------- */
 let window
 /* -------------------------------------------------------------------------- */
+
+const getTemplateUrl = () => isDev() ? `http://${host}:${port}` : `file://${__dirname}/index.html`;
 
 function setDevelopmentMode() {
     installDevTools()
@@ -41,7 +42,7 @@ function createBrowserWindow () {
     })
 
     // Load template file
-    window.loadURL(`http://${host}:${port}`)
+    window.loadURL(getTemplateUrl());
 
     // Emitted when the window is closed.
     window.on('closed', () => {

@@ -19,4 +19,8 @@ module.exports = validate(merge(baseConf, {
             },
         ],
     },
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
 }))
