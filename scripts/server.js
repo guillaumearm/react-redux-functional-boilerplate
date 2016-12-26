@@ -4,13 +4,13 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { spawn } from 'child_process';
 
-import { host, port, isElectron, isDev } from './webpack/env';
+import { host, port, isElectron, isDev } from './env';
 
 let webpackConfig;
 if (isElectron())
-    webpackConfig = require('./webpack/webpack.electron-renderer.config.js');
+    webpackConfig = require('./webpack.electron-renderer.config.js');
 else
-    webpackConfig = require('./webpack/webpack.config.js');
+    webpackConfig = require('./webpack.config.js');
 
 const app = express();
 const compiler = webpack(webpackConfig);
