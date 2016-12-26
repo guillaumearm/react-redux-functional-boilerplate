@@ -1,7 +1,7 @@
 const path = require('path');
 const { argv } = require('yargs');
 const { readFileSync } = require('fs');
-const { invoker, compose, propOr, pathOr, always } = require('ramda');
+const { invoker, compose, propOr, always } = require('ramda');
 
 const APP_PATH = path.join(__dirname,  '..');
 
