@@ -49,15 +49,17 @@ const restartElectron = (signal) => {
     setImmediate(startElectron);
 }
 
-mainCompiler.watch({}, (err, stats) => {
-    if (err) {
-        console.error(err);
-        console.error(stats.toJson().errors);
-        process.exit(1);
-    }
-    restartElectron('SIGHUP');
-    console.info(`${webpackConf.output.filename} compiled`);
-});
+if (isElectron()) {
+    mainCompiler.watch({}, (err, stats) => {
+        if (err) {
+            console.error(err);
+            console.error(stats.toJson().errors);
+            process.exit(1);
+        }
+        restartElectron('SIGHUP');
+        console.info(`${webpackConf.output.filename} compiled`);
+    });
+}
 
 const server = app.listen(port, host, serverError => {
     if (serverError) {
