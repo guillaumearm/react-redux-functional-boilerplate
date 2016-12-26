@@ -1,5 +1,5 @@
 const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
-const { isElectron } = require('../scripts/env');
+const { isElectron } = require('./env');
 const webpackConfig = require('./webpack.config.js');
 
 if (isElectron()) {
