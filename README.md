@@ -21,8 +21,6 @@ This is my personal react-redux boilerplate.
 - `react-dom`
 - `redux`
 - `react-redux`
-
-#### Additional stuffs
 - `redux-actions`
 - `keymirror`
 - `reselect`
@@ -44,6 +42,15 @@ This is my personal react-redux boilerplate.
 ###### in production
 - `npm run build:main` : build electron main app in production mode
 - `npm run package:electron:osx` : package electron application in a `.app` file
+
+#### Test
+- `npm run test`: start tests
+- `npm run test:coverage`: start tests with coverage
+- `npm run test:watch`: start tests (with watch)
+
+#### Misc
+- `npm run clean`: remove dist/ and clean/ builder
+- `npm run open`: open browser
 
 ## What next ?
 - Installable : boilerplate will be installable in one command
