@@ -4,9 +4,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { spawn } from 'child_process';
 
-import { host, port, isElectron, isDev } from './env';
-const webpackConf = require('./webpack.config.js');
-const webpackElectronMainConf = require('./webpack.electron-main.config.js');
+import { host, port, isElectron, isDev } from '../env';
+import webpackConf from '../webpack.config.js';
+import webpackElectronMainConf from '../webpack.electron-main.config.js'
 
 const compiler = webpack(webpackConf);
 const mainCompiler = webpack(webpackElectronMainConf);
