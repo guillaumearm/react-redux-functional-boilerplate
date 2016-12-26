@@ -4,9 +4,11 @@
   "version": "0.7.0",
   "description": "an electron ready functional React/Redux webpack boilerplate",
   "main": "./build/prod/main.js",
-  "devConfig": {
-    "host": "127.0.0.1",
-    "port": 3042
+  "config": {
+    "devServer": {
+        "host": "127.0.0.1",
+        "port": 3042
+    }
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config scripts/webpack.config.js --progress",

@@ -1,10 +1,11 @@
 /* ---------- Electron init ------------------------------------------------- */
-import { always } from 'ramda';
+import { always, pathOr } from 'ramda';
 import { app, BrowserWindow } from 'electron'
 /* ---------- Requires ------------------------------------------------------ */
-const { devConfig } = __PACKAGEJSON__;
 const isDev = always(__DEVELOPMENT__);
-const { host = '0.0.0.0', port = 8080 } = devConfig;
+// const { config = {} } = __PACKAGEJSON__;
+const getDevServerConfig = pathOr({}, ['config', 'devServer']);
+const { host = '0.0.0.0', port = 8080 } = getDevServerConfig(__PACKAGEJSON__);
 /* ----------- Devtools ------------------------------------------------------ */
 let installDevTools = () => Promise.resolve();
 if (isDev()) {
