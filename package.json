@@ -15,6 +15,7 @@
     "build:dev:main": "NODE_ENV=development webpack --config webpack/webpack.electron-main.config.js",
     "build:electron": "npm run -s build:main && npm run -s build",
     "build:dev:electron": "npm run -s build:dev:main && npm run -s build:dev",
+    "build:all": "npm run -s clean ; npm run -s build ; npm run -s build:main ; npm run -s build:dev ; npm run -s build:dev:main",
     "dev": "NODE_ENV=development node -r babel-register server.js --progress",
     "dev:prod": "NODE_ENV=production node -r babel-register server.js --progress",
     "dev:electron": "NODE_ENV=development node -r babel-register server.js --electron",
