@@ -1,4 +1,5 @@
 /* ---- Imports ------------------------------------------------------------- */
+const { propOr } = require('ramda');
 const path = require('path');
 const validate = require('webpack-validator');
 const merge = require('webpack-merge');
@@ -6,7 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const baseConf = require('./webpack.base.config');
-const { SRC_PATH } = require('./env');
+const { config, SRC_PATH } = require('./env');
+const view = propOr({}, 'view', config);
 /* -------------------------------------------------------------------------- */
 
 const webpackConf = {
@@ -16,7 +18,8 @@ const webpackConf = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(SRC_PATH, 'view.html'),
+            template: path.join(SRC_PATH, 'view.ejs'),
+            title: view.title,
         }),
         new ExtractTextPlugin('styles.css', {
             allChunks: true,
