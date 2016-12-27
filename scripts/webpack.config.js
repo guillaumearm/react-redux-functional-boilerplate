@@ -2,12 +2,16 @@
 const { propOr } = require('ramda');
 const path = require('path');
 const validate = require('webpack-validator');
-const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+
+const merge = require('webpack-merge').strategy({
+    entry: 'prepend',
+});
 
 const baseConf = require('./webpack.base.config');
-const { config, SRC_PATH } = require('./env');
+const { config, SRC_PATH, isElectron } = require('./env');
 const view = propOr({}, 'view', config);
 /* -------------------------------------------------------------------------- */
 
@@ -41,6 +45,8 @@ const webpackConf = {
     },
 };
 
-module.exports = validate(merge.strategy({
-    entry: 'prepend',
-})(baseConf, webpackConf));
+if (isElectron()) {
+    webpackConf.target = webpackTargetElectronRenderer(webpackConf);
+}
+
+module.exports = validate(merge(baseConf, webpackConf));
