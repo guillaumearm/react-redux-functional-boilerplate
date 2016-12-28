@@ -1,16 +1,16 @@
 {
   "name": "react-redux-functional-boilerplate",
   "productName": "React/Redux functional boilerplate",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "an electron ready functional React/Redux webpack boilerplate",
   "main": "./build/prod/main.js",
   "config": {
     "devServer": {
-        "host": "0.0.0.0",
-        "port": 3042
+      "host": "0.0.0.0",
+      "port": 3042
     },
     "view": {
-        "title": "React Redux functional boilerplate"
+      "title": "React Redux functional boilerplate"
     }
   },
   "scripts": {
