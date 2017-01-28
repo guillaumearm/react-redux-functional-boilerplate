@@ -10,7 +10,7 @@ const toString = invoker(0, 'toString');
 const getPackageJson = compose(JSON.parse, toString, readFileSync);
 const getConfig = propOr({}, 'config');
 /* -------------------------------------------------------------------------- */
-const findIsDevServer = compose(Boolean, find(test(/scripts\/server\.js/)));
+const findIsDevServer = compose(Boolean, find(test(/scripts\/server/)));
 
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => process.env.NODE_ENV === 'production'
