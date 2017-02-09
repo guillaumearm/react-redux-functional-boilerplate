@@ -3,6 +3,7 @@ import { always, pathOr } from 'ramda';
 import { app, BrowserWindow } from 'electron'
 /* ---------- Requires ------------------------------------------------------ */
 const isDev = always(__DEVELOPMENT__);
+const isDevServer = always(Boolean(process.env.WEBPACK_DEV_SERVER));
 const getDevServerConfig = pathOr({}, ['config', 'devServer']);
 const { host = '0.0.0.0', port = 8080 } = getDevServerConfig(__PACKAGEJSON__);
 /* ----------- Devtools ------------------------------------------------------ */
@@ -20,7 +21,12 @@ if (isDev()) {
 let window
 /* -------------------------------------------------------------------------- */
 
-const getTemplateUrl = () => isDev() ? `http://${host}:${port}` : `file://${__dirname}/index.html`;
+const getTemplateUrl = () => {
+    if (isDevServer()) {
+        return `http://${host}:${port}`;
+    }
+    return `file://${__dirname}/index.html`;
+}
 
 function setDevelopmentMode() {
     installDevTools()

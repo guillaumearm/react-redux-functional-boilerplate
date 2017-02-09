@@ -20,7 +20,7 @@ const startElectron = () => {
             return stopDevServer(code);
         };
         electronChildProcess = spawn('electron', [mainPath], {
-            env: process.env,
+            env: { ...process.env, WEBPACK_DEV_SERVER: 'on' },
             detached: true,
             shell: true,
             stdio: 'inherit',

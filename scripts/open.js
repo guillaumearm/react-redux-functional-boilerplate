@@ -1,6 +1,6 @@
 const opn = require('opn');
 /* ---- Config -------------------------------------------------------------- */
-const { host, port } = require('./config');
+const { host, port } = require('./env');
 /* -------------------------------------------------------------------------- */
 const options = {
     wait: false,
