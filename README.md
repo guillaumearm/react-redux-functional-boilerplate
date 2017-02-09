@@ -27,30 +27,62 @@ This is my personal react-redux boilerplate.
 
 ## Usage
 
-#### Normal use
-###### in development
-- `npm run build:dev` : build bundle in development mode
-- `npm run dev` : start dev-server
-###### in production
-- `npm run build`: build bundle in production mode
-- `npm run dev:prod` : start dev-server in production mode
+You can set `NODE_ENV` to `production` or `development`
 
+#### Normal use (web)
+###### Build bundle
+```bash
+npm run build
+```
+###### Start dev server
+```bash
+npm run dev
+```
 #### Use with electron
-###### in development
-- `npm run build:dev:main` : build electron main app in development mode
-- `npm run dev:electron` : start electron dev-server
-###### in production
-- `npm run build:main` : build electron main app in production mode
-- `npm run package:electron:osx` : package electron application in a `.app` file
+###### Build main process
+```bash
+npm run build:main
+```
+###### Build renderer
+```bash
+npm run build:renderer
+```
+###### Build main process + renderer
+```bash
+npm run build:electron
+```
+###### Start electron dev server
+```bash
+npm run dev:electron
+```
+###### Package osx .app file
+```bash
+npm run package:electron:osx
+```
 
 #### Test
-- `npm run test`: start tests
-- `npm run test:coverage`: start tests with coverage
-- `npm run test:watch`: start tests (with watch)
+###### Start tests
+```bash
+npm run test
+```
+###### Start tests with coverage
+```bash
+npm run test:coverage
+```
+###### Start tests in watch mode
+```bash
+npm run test:watch
+```
 
 #### Misc
-- `npm run clean`: remove dist/ and clean/ builder
-- `npm run open`: open browser
+###### Remove dist/ and clean/ folder
+```bash
+npm run clean
+```
+###### Open browser
+```bash
+npm run open
+```
 
 ## What next ?
 - Installable : boilerplate will be installable in one command
