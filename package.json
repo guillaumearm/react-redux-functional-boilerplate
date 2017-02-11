@@ -21,6 +21,7 @@
     "dev": "node -r babel-register scripts/server",
     "dev:electron": "npm run dev -- --electron",
     "package:electron:osx": "npm run -s clean && NODE_ENV=production npm run -s build:electron && electron-packager --out dist --overwrite --platform mas .",
+    "lint": "eslint .",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage",
