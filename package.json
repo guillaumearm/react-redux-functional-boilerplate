@@ -27,7 +27,8 @@
     "test:watch": "jest --watch --coverage",
     "preversion": "npm run -s test",
     "clean": "rimraf ./build ./dist",
-    "open": "node scripts/open.js"
+    "open": "node scripts/open.js",
+    "open:electron:osx": "opn 'dist/React-Redux functional boilerplate-mas-x64/React-Redux functional boilerplate.app/'"
   },
   "jest": {
     "globals": {
@@ -100,6 +101,7 @@
     "jest": "^18.0.0",
     "json-loader": "^0.5.4",
     "opn": "^4.0.2",
+    "opn-cli": "^3.1.0",
     "react-hot-loader": "^3.0.0-alpha.3",
     "redux-logger": "^2.7.4",
     "rimraf": "^2.5.4",
