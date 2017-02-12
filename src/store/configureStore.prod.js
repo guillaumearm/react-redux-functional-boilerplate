@@ -1,11 +1,11 @@
-import { createStore } from 'redux'
-import rootReducer from 'reducers'
+import { createStore } from 'redux';
+import rootReducer from 'reducers';
 
 export default (initialState = {}) => {
-    const store = createStore(
+  const store = createStore(
         rootReducer,
         initialState,
-        undefined // middlewares
-    )
-    return store
-}
+        undefined, // middlewares
+    );
+  return store;
+};

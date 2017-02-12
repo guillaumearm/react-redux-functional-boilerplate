@@ -1,2 +1,2 @@
-export default from './constants'
-export * from './app'
+export default from './constants';
+export * from './app';

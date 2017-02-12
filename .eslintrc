@@ -1,78 +1,64 @@
 {
-  "env": {
-    "es6": true,
-  },
   "parser": "babel-eslint",
-  "plugins": ["react"],
-  "settings": {
-    "react": {
-      "createClass": "createClass", // Regex for Component Factory to use, default to "createClass"
-      "pragma": "React",  // Pragma to use, default to "React"
-      "version": "15.4" // React version, default to the latest React stable release
-    }
-  },
   "parserOptions": {
     "ecmaFeatures": {
-      "arrowFunctions": true,
-      "binaryLiterals": true,
-      "blockBindings": true,
-      "classes": true,
-      "defaultParams": true,
-      "destructuring": true,
-      "forOf": true,
-      "generators": true,
-      "modules": true,
-      "objectLiteralComputedProperties": true,
-      "objectLiteralDuplicateProperties": true,
-      "objectLiteralShorthandMethods": true,
-      "objectLiteralShorthandProperties": true,
-      "octalLiterals": true,
-      "regexUFlag": true,
-      "regexYFlag": true,
-      "spread": true,
-      "superInFunctions": true,
-      "templateStrings": true,
-      "unicodeCodePointEscapes": true,
-      "globalReturn": true,
       "jsx": true
     }
   },
+  "plugins": [
+    "import",
+    "react",
+    "jsx-a11y",
+    "react-perf"
+  ],
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
   "globals": {
-    "setTimeout": false,
-    "setImmediate": false,
-    "__dirname": false,
-    "document": false,
-    "module": false,
-    "console": false,
-    "window": false,
-    "global": false,
-    "require": false,
-    "process": false,
-    "it": false,
-    "expect": false,
-    "describe": false,
-    "__NODE_ENV__": false,
-    "__DEVELOPMENT__": false,
-    "__PRODUCTION__": false,
-    "__TEST__": false,
-    "__ELECTRON__": false,
-    "__PACKAGEJSON__": false,
-    "__NAME__": false,
-    "__VERSION__": false,
+    "__NODE_ENV__": true,
+    "__DEVELOPMENT__": true,
+    "__PRODUCTION__": true,
+    "__TEST__": true,
+    "__ELECTRON__": true,
+    "__HMR__": true,
+    "__DEVSERVER__": true,
+    "__NAME__": true,
+    "__VERSION__": true,
+    "__PACKAGEJSON__": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "scripts/webpack.config.js"
+      }
+    },
+    "react": {
+      "createClass": "createClass",
+      "pragma": "React",
+      "version": "15.4"
+    }
   },
   "rules": {
-    "no-unused-vars": ["warn"],
-    "no-redeclare": ["error"],
-    "no-undef": ["error"],
-    "comma-dangle": ["warn", "always-multiline"], // disallow or enforce trailing commas
-    "indent": ["warn", 4, {"SwitchCase": 1}], // this option sets a specific tab width for your code (off by default)
-    "key-spacing": ["warn", {"beforeColon": false, "afterColon": true, mode: "minimum"}], // enforces spacing between keys and values in object literal properties
-    "quotes": ["warn", "single", "avoid-escape"], // specify whether double or single quotes should be used
-    "keyword-spacing": ["warn", {"before": true, "after": true}], // require a space after certain keywords (off by default)
-    "computed-property-spacing": ["warn", "never"], // disallow spaces inside computed properties
-    "react/jsx-indent-props": [0],
-    "react/react-in-jsx-scope": ["error"],
-    "react/jsx-uses-react": ["error"],
-    "react/jsx-uses-vars": ["error"]
+    "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.js",
+          "scripts/**/*.js",
+          "src/render.jsx",
+          "src/store/configureStore.dev.js",
+          "src/main/index.js"
+        ]
+      }
+    ]
   }
 }
