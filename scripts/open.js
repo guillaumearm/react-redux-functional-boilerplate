@@ -3,7 +3,7 @@ const opn = require('opn');
 const { host, port } = require('./env');
 /* -------------------------------------------------------------------------- */
 const options = {
-    wait: false,
+  wait: false,
 };
 
 opn(`http://${host}:${port}`, options);

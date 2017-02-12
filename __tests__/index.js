@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import * as App from 'App';
+import * as App from '../src/App';
 
 describe('react-redux-functional-boilerplate', () => {
-    describe('exports', () => {
-        it('has a src/App component', () => {
-            expect(App).toBeDefined();
-        });
+  describe('exports', () => {
+    it('has a src/App component', () => {
+      expect(App).toBeDefined();
     });
+  });
 });

@@ -1,5 +1,10 @@
 {
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "plugins": [
     "import",
     "react",
@@ -7,8 +12,7 @@
     "react-perf"
   ],
   "extends": [
-    "airbnb",
-    "plugin:react-perf/recommended"
+    "airbnb"
   ],
   "env": {
     "es6": true,
@@ -16,11 +20,45 @@
     "node": true,
     "jest": true
   },
+  "globals": {
+    "__NODE_ENV__": true,
+    "__DEVELOPMENT__": true,
+    "__PRODUCTION__": true,
+    "__TEST__": true,
+    "__ELECTRON__": true,
+    "__HMR__": true,
+    "__DEVSERVER__": true,
+    "__NAME__": true,
+    "__VERSION__": true,
+    "__PACKAGEJSON__": true
+  },
   "settings": {
     "import/resolver": {
       "webpack": {
         "config": "scripts/webpack.config.js"
       }
+    },
+    "react": {
+      "createClass": "createClass",
+      "pragma": "React",
+      "version": "15.4"
     }
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.js",
+          "scripts/**/*.js",
+          "src/render.jsx",
+          "src/store/configureStore.dev.js",
+          "src/main/index.js"
+        ]
+      }
+    ]
   }
 }

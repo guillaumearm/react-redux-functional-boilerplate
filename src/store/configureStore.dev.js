@@ -1,21 +1,21 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import createLogger from 'redux-logger'
+import { createStore, applyMiddleware, compose } from 'redux';
+import createLogger from 'redux-logger';
 import { identity } from 'ramda';
 
-import rootReducer from 'reducers'
+import rootReducer from 'reducers';
 
 export default (initialState = {}) => {
-    const store = createStore(
+  const store = createStore(
         rootReducer,
         initialState,
         compose(
             applyMiddleware(
                 createLogger({
-                    collapsed: true,
+                  collapsed: true,
                 }),
             ),
-            window.devToolsExtension && window.devToolsExtension() || identity,
-        )
-    )
-    return store
-}
+            (window.devToolsExtension && window.devToolsExtension()) || identity,
+        ),
+    );
+  return store;
+};
