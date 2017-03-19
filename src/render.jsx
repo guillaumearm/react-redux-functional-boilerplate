@@ -14,7 +14,7 @@ const reactContainer = document.getElementById('reactContainer');
 
 ReactDOM.render(
   <Root />,
-    reactContainer,
+  reactContainer,
 );
 
 if (__DEVELOPMENT__ && module.hot) {
@@ -24,7 +24,7 @@ if (__DEVELOPMENT__ && module.hot) {
       <AppContainer>
         <NextRoot />
       </AppContainer>,
-            reactContainer,
-        );
+      reactContainer,
+    );
   });
 }

@@ -7,7 +7,7 @@ const baseConf = require('./webpack.base.config');
 
 module.exports = validate(merge(baseConf, {
   target: 'electron-main',
-  entry: [path.join(SRC_PATH, 'main')],
+  entry: [path.join(SRC_PATH, 'mainProcess')],
   output: {
     filename: 'main.js',
   },
