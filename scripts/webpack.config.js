@@ -17,9 +17,14 @@ const view = propOr({}, 'view', config);
 /* -------------------------------------------------------------------------- */
 
 const webpackConf = {
-  entry: [path.join(SRC_PATH, 'render.jsx')],
+  entry: {
+    render: [
+      path.join(SRC_PATH, 'boot/index.js'),
+      path.join(SRC_PATH, 'render.jsx'),
+    ],
+  },
   output: {
-    filename: 'render.js',
+    filename: '[name].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
