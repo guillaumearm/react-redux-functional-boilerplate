@@ -75,7 +75,7 @@ npm run test:watch
 ```
 
 #### Misc
-###### Remove dist/ and clean/ folder
+###### Remove dist/ and build/ folder
 ```bash
 npm run clean
 ```
