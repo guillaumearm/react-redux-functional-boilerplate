@@ -51,13 +51,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.spec.js",
-          "scripts/**/*.js",
-          "src/render.jsx",
-          "src/store/configureStore.dev.js",
-          "src/main/index.js"
-        ]
+        "devDependencies": true,
       }
     ]
   }
