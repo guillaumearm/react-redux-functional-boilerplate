@@ -1,7 +1,7 @@
 {
   "name": "react-redux-functional-boilerplate",
   "productName": "React/Redux functional boilerplate",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "an electron ready functional React/Redux webpack boilerplate",
   "main": "./build/prod/main.js",
   "config": {
