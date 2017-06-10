@@ -1,7 +1,4 @@
-/* eslint-disable import/first */
 /* eslint-disable global-require */
-
-import './boot'; // first side effects
 
 import React from 'react';
 import ReactDOM from 'react-dom';
