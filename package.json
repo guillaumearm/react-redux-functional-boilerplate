@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "webpack --config scripts/webpack.config.js --progress",
-    "build:main": "webpack --config scripts/webpack.electron-main.config.js --progress",
+    "build:main": "webpack --config scripts/webpack.mainProcess.config.js --progress",
     "build:renderer": "npm run build -- --electron",
     "build:electron": "npm run build:main && npm run build:renderer",
     "dev": "node -r babel-register scripts/server",
@@ -40,6 +40,11 @@
     },
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/",
+      "<rootDir>/dist/"
+    ],
+    "modulePathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/build/",
       "<rootDir>/dist/"
@@ -85,6 +90,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
     "babel-eslint": "^7.1.1",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^6.2.10",
     "babel-plugin-ramda": "^1.1.6",
     "babel-preset-es2015": "^6.18.0",
@@ -104,7 +110,7 @@
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
-    "jest": "^18.0.0",
+    "jest": "^20.0.4",
     "json-loader": "^0.5.4",
     "opn": "^4.0.2",
     "opn-cli": "^3.1.0",
