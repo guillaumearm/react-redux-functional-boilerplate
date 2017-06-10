@@ -8,7 +8,7 @@ import { spawn } from 'child_process';
 
 import { host, port, isElectron, isDev } from '../env';
 import webpackConf from '../webpack.config';
-import webpackElectronMainConf from '../webpack.electron-main.config';
+import webpackElectronMainConf from '../webpack.mainProcess.config';
 
 const rendererCompiler = webpack(webpackConf);
 const mainCompiler = webpack(webpackElectronMainConf);
