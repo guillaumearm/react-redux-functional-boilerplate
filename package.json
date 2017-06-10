@@ -44,6 +44,11 @@
       "<rootDir>/build/",
       "<rootDir>/dist/"
     ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/",
+      "<rootDir>/dist/"
+    ],
     "moduleDirectories": [
       "src",
       "node_modules"
